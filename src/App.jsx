@@ -6,6 +6,7 @@ import Error404 from "./components/Error404";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CartProvider from "./context/CartContext";
 import CartItems from "./components/CartItems";
+import CheckOut from "./components/CheckOut";
 function App() {
   return (
     <CartProvider>
@@ -16,6 +17,7 @@ function App() {
           <Route path="/cart" element={<CartItems />} />
           <Route path="/category/:id" element={<ItemListContainer />} />
           <Route path="/item/:id" element={<ItemDetailsContainer />} />
+           <Route path="/checkOut" element={<CheckOut/>} />
           <Route path="*" element={<Error404 />} />
         </Routes>
       </BrowserRouter>
