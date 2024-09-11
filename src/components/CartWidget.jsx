@@ -7,9 +7,7 @@ import { Link } from 'react-router-dom';
 
 function CartWidget() {
     const {itemsContext} = useContext(ItemsCart);
-    console.log("items cart",itemsContext)
     const itemsCount = itemsContext.reduce((acc, item) => acc + item.quantity, 0);
-    console.log("itemsCount: " + itemsCount)
     return (
          <>
          <Link to={'/cart'}>

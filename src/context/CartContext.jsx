@@ -40,9 +40,8 @@ const CartProvider = ({ children }) => {
   const onAdd = (item, quantity) => {
     addItem(item, quantity);
   };
-console.log(itemsContext)
   return <ItemsCart.Provider value={{addItem,itemsContext,clear,removeItem,onAdd
-    
+
   }}>{children}</ItemsCart.Provider>;
 };
 

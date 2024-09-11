@@ -8,24 +8,12 @@ import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import InputGroup from 'react-bootstrap/InputGroup';
 import Row from 'react-bootstrap/Row';
+import CheckOut from "./CheckOut";
 const CartItems = () => {
     const {itemsContext,clear,removeItem}=useContext(ItemsCart)
-    const [validated, setValidated] = useState(false);
     const total = itemsContext.reduce((acc, item) => acc + item.price * item.quantity, 0);
-    
-    const items=useContext(ItemsCart)
-const handleSubmit = (event) => {
-   
-  const form = event.currentTarget;
-  if (form.checkValidity() === false) {
-    event.preventDefault();
-    event.stopPropagation();
-  }
-
-  setValidated(true);
-};
-
-    console.log("itemsContext",itemsContext)
+    console.log("cartItems", itemsContext)
+ 
     if(itemsContext.length==0){
       return <>
         <h3>Carrito vacio</h3>
@@ -61,7 +49,7 @@ const handleSubmit = (event) => {
           <td>{item.name}</td>
           <td>${item.price}</td>
           <td>cantidad: {item.quantity}</td>
-          <Button variant="danger" active onClick={()=>removeItem(item)}>Eliminar</Button>{' '}
+          <td><Button variant="danger" active onClick={()=>removeItem(item)}>Eliminar</Button></td>
           
         </tr>
       ))}
@@ -71,55 +59,10 @@ const handleSubmit = (event) => {
     <div className="d-flex justify-content-between">
     <Button variant="secondary" className="w-auto" onClick={()=>clear()}>Vaciar Carrito</Button>
     <h3>Total: ${total}</h3>
-    <Link to={'/checkOut'}><Button variant="info" className="w-auto" >CheckOut</Button></Link>
     </div>
 
-    <h3 className='text-center'>Finalizar compra</h3>
-  <Form noValidate validated={validated} onSubmit={handleSubmit}  >
-    <Row className="mb-3 d-flex flex-column align-items-center">
-      <Form.Group as={Col} md="4" controlId="validationCustom01">
-        <Form.Control
-          required
-          type="text"
-          placeholder="First name"
-        />
-        <Form.Control.Feedback>Looks good!</Form.Control.Feedback>
-      </Form.Group>
-      <Form.Group as={Col} md="4" controlId="validationCustomUsername">
-        <InputGroup hasValidation>
-          <Form.Control
-            type="text"
-            placeholder="Phone Number"
-            aria-describedby="inputGroupPrepend"
-            required
-          />
-          <Form.Control.Feedback type="invalid">
-            Please choose a phone number.
-          </Form.Control.Feedback>
-        </InputGroup>
-      </Form.Group>
-      <Form.Group as={Col} md="4" controlId="validationCustomUsername">
-        <InputGroup hasValidation>
-          <InputGroup.Text id="inputGroupPrepend">@</InputGroup.Text>
-          <Form.Control
-            type="email"
-            placeholder="Email Address"
-            aria-describedby="inputGroupPrepend"
-            required
-          />
-          <Form.Control.Feedback type="invalid">
-            Please choose a email.
-          </Form.Control.Feedback>
-        </InputGroup>
-      </Form.Group>
-      
-    </Row>
-    <div className='text-center'>
-    <Button as={Col} md="4" type="submit">Generar orden</Button>
-    </div>
-   
-  </Form>
 
+  <CheckOut total={total}/>
     </Container>
   )
 }
