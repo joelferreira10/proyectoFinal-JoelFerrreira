@@ -2,9 +2,11 @@ import { useEffect, useState, useContext } from 'react';
 import { useParams } from 'react-router-dom';
 import { getFirestore, getDoc, doc } from 'firebase/firestore';
 import ItemDetail from './ItemDetail';
+import Loading from './Loading';
 
 const ItemDetailsContainer = () => {
   const [items, setItem] = useState(null);
+  const [loading,setLoading] = useState(true);
   const { id } = useParams();
 
   useEffect(() => {
@@ -14,6 +16,7 @@ const ItemDetailsContainer = () => {
       .then((snapshot) => {
         if (snapshot.exists()) {
           setItem({ ...snapshot.data(), id: snapshot.id });
+          setLoading(false);
         } else {
           console.error("No such document!");
         }
@@ -32,9 +35,10 @@ const ItemDetailsContainer = () => {
   }, [items]);
 
   
-
+if(loading)return <Loading/>
   return (
     <>
+    <h3 className='text-center'>Informacion del producto</h3>
       <ItemDetail items={items} />
     </>
   );

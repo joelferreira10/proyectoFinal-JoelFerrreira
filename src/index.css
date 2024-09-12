@@ -1,3 +1,16 @@
 img{
   width: 30px;
 }
+.no-underline {
+  text-decoration: none;
+}
+.border-number{
+  padding: 3px;
+  color: white;
+  font-size: 10px;
+  border:1px solid rgb(197, 2, 28);
+  border-radius: 50%;
+  margin-left: -4px;
+  background-color: rgb(197, 2, 28);
+  
+}

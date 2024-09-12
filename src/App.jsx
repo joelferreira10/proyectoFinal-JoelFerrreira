@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import CartProvider from "./context/CartContext";
 import CartItems from "./components/CartItems";
 import CheckOut from "./components/CheckOut";
+
 function App() {
   return (
     <CartProvider>

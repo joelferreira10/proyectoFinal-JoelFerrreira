@@ -2,6 +2,7 @@ import { useState,useEffect} from "react";
 import { useParams } from "react-router-dom";
 import Items from "./items";
 import Container from "react-bootstrap/Container";
+import Loading from "./Loading";
 import {
   getFirestore,
   getDocs,
@@ -12,8 +13,9 @@ import {
 
 function ItemListContainer({ greeting }) {
   const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
  // const [error, setError] = useState(null);
-
+console.log(loading)
 const {id} = useParams();
 
 
@@ -29,8 +31,11 @@ getDocs(ref)
             })
             
         )
+        setLoading(false);
+
     })
 }, [id]);
+if(loading)return <Loading/>
 
   return (
     <>

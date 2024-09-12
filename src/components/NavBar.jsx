@@ -30,15 +30,15 @@ function NavBar() {
   
   return (
     <>
-      <Navbar collapseOnSelect expand="lg" bg="light">
+      <Navbar collapseOnSelect expand="lg" bg="info" >
         <Container>
-          <Navbar.Brand to="/" as={NavLink}>Home</Navbar.Brand>
+          <Navbar.Brand className="fs-4" to="/" as={NavLink}>Home</Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
             <Nav className="me-auto">
               
               {Array.from(categories).map((cat) => (
-                <Nav.Link key={cat}to={`/category/${cat}`} as={NavLink}>
+                <Nav.Link className="text-black fs-5"s key={cat}to={`/category/${cat}`} as={NavLink}>
                   {cat}
                 </Nav.Link>
               ))}	
